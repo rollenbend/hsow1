@@ -1,0 +1,38 @@
+struct Dpp_Classic
+{
+	unsigned char Syncro=0x53;
+	unsigned char Size=0x04;
+	unsigned int Dpp=0;
+	unsigned char Cs=0;
+};
+
+struct Dpp_Main
+{
+	Dpp_Classic dpp_classic;
+	short Speed=0;
+	unsigned int Timer=0;
+	unsigned char Cs=0;
+};
+
+struct Acc_Gyro
+{
+	short Acc[3];
+	short Gyro[3];
+	unsigned int Timer;
+};
+
+struct Acc_Message
+{
+	unsigned char Syncro=0x7e;
+	unsigned char Size=0x11;
+	unsigned char Status=0;
+	unsigned char Reply=0;
+	Acc_Gyro acc_gyro;
+	unsigned char Cs=0;
+};
+
+struct Packet
+{
+	Dpp_Main dpp_main;
+	Acc_Message acc_message;
+};
